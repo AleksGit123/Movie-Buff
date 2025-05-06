@@ -5,7 +5,8 @@ let h2 = document.querySelector("h2");
 let pg2Header = document.querySelector(".pg2_header");
 let userInput = document.querySelector(".user_input");
 let sendButton = document.querySelector(".send");
-let answer = document.querySelector(".answer")
+let answer = document.querySelector(".answer");
+
 
 // movie list
 let GrownUps ="I can suggest u Grown Ups. it's a Great comedy about classmates, who left little childish mood and spend their Weekends doing crazy things and having fun.";//comedy
@@ -31,31 +32,27 @@ let genres = {
 // genres and movies matvhing
 let genresKey = Object.keys(genres);
 let genresValue = Object.values(genres);
-// console.log(genresKey,genresValue);
-// for(let i = 0;i < genresValue.length;i++){
-//     // console.log(genresValue[i])
-//     // for(let j in genresValue[i]){
-      
-//             console.log(genresValue[0][i]);
-        
-//     // }
-// };
+
 
  function getMovie(){
+
     
     for(let i = 0;i < genresValue.length;i++){
         // console.log(genresValue[i])
-        switch(true){
-        case userInput.value.includes(genresValue[0][i]) : answer.innerText = GrownUps;
-        break;
-        case userInput.value.includes(genresValue[1][i]) : answer.innerText = NoteBook;
-        break;   
-        case userInput.value.includes(genresValue[2][i]) : answer.innerText = Equalizer;
-        break;
-        case userInput.value.includes(genresValue[3][i]) : answer.innerText = CandoLake;
-        break;
-        case userInput.value.includes(genresValue[4][i]) : answer.innerText = Hostiles;
-        }
+        answer.style.textWrap = "wrap";
+            switch(true){
+            case userInput.value.includes(genresValue[0][i]) : answer.  innerText = GrownUps;
+            break;
+            case userInput.value.includes(genresValue[1][i]) : answer.  innerText = NoteBook;
+            break;   
+            case userInput.value.includes(genresValue[2][i]) : answer.  innerText = Equalizer;
+            break;
+            case userInput.value.includes(genresValue[3][i]) : answer.  innerText = CandoLake;
+            break;
+            case userInput.value.includes(genresValue[4][i]) : answer.  innerText = Hostiles;
+            break;
+        
+        }  
         
         
     }
@@ -64,13 +61,13 @@ let genresValue = Object.values(genres);
  // qasual questions and answers
 
 let QandA = {
-    "What is your name?":"My name is Movie Buffer",
+    "name":"My name is Movie Buffer",
 
     "What is Buff?":"Buff reffers to person who is crazy about movies",
 
     "Who is your creator?" :"I can't tell u name, but he is a beginner Developer😁",
 
-    "Thanks for movies" : "Your Welcome, buddy! Come around another time"
+    "Thank" : "Your Welcome, buddy! Come around another time"
 
 }
 
@@ -82,25 +79,26 @@ let qasualValues = Object.values(QandA);
 
 
 function qasualChat(){
+    answer.classList.remove("hide");
+    
     for(let i = 0;i < qasualKeys.length;i++){
-        if(userInput.value === qasualKeys[i]){
+        if(userInput.value === qasualKeys[i] || userInput.value.includes(qasualKeys[i])){
             console.log(qasualValues[i]);
             answer.innerText = qasualValues[i];
             // console.log(userInput.value)
         }
-        else if(userInput.value !== qasualChat[i]){
-            answer.value = "I dont get the question";
-        }
+        // else if(userInput.value !== qasualKeys[i]){
+        //     answer.innerText = "I dont get the question";
+        // }
 
     }
     
-
 }
 
         
 // events on clicking on the send button or enter
 function sendEvent(eventName1,eventName2){
-    sendButton.addEventListener("click",() =>{
+    sendButton.addEventListener(eventName1,() =>{
         h2.setAttribute("class","hide");
         pg2Header.setAttribute("class","hide");
         // pg2Header.style.overflow = "visible;"
@@ -108,17 +106,17 @@ function sendEvent(eventName1,eventName2){
         qasualChat();
         getMovie();
         
-     })
+        
+    })
 //  console.log(response)
     document.addEventListener(eventName2, event =>{
         h2.setAttribute("class","hide");
         pg2Header.setAttribute("class","hide");
 
         if(event.keyCode == 13){
-        
-
-           qasualChat();
-           getMovie();
+            qasualChat();
+            getMovie();
+           
         }
     })
 }

@@ -199,11 +199,6 @@ body:hover .div_parent {
     align-items: center;
 }
 
-.animation {
-    /* animation: blink .5s ease infinite; */
-    animation: blink 4s 10s forwards;
-
-}
 
 .pg2_header {
     overflow: hidden;
@@ -235,9 +230,29 @@ body:hover .div_parent {
 .answer {
     font-family: "Tagesschrift", system-ui;
     font-size: 32px;
-    text-wrap: wrap;
+    width: 100%;
+    white-space: nowrap;
+    border-right: 0px solid;
+    overflow: hidden;
     text-align: center;
 }
+
+.animation {
+    animation: blink .5s ease infinite forwards, writing 4s 1 steps(50, end) forwards,
+        removeCursor .3s 5s 1 forwards;
+    /* enableWrap 4s 4s forwards; */
+}
+
+/* @keyframes enableWrap {
+    from {
+        text-wrap: nowrap;
+    }
+
+    to {
+        text-wrap: wrap;
+    }
+} */
+
 
 @keyframes writing {
     from {
